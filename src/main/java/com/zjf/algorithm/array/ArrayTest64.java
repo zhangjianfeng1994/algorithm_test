@@ -39,8 +39,7 @@ public class ArrayTest64 {
 				else if (j == 0 ) {
 					dp[i][j] = current + dp[i-1][0];
 				} else {
-					dp[i][j] = Math.min(dp[i][j], dp[i - 1][j] + current);
-					dp[i][j] = Math.min(dp[i][j], dp[i][j - 1] + current);
+					dp[i][j] = Math.min(dp[i][j - 1] + current, dp[i - 1][j] + current);
 				}
 			}
 		}
@@ -52,8 +51,8 @@ public class ArrayTest64 {
 
 
 	public static void main(String[] args) {
-//        int[][] grid = {{1,3,1},{1,5,1},{4,2,1}};
-		int[][] grid = {{1, 2}, {1, 1}};
+        int[][] grid = {{1,3,1},{1,5,1},{4,2,1}};
+//		int[][] grid = {{1, 2}, {1, 1}};
 		ArrayTest64 practice = new ArrayTest64();
 		int minPathSum = practice.minPathSum(grid);
 		System.out.println(minPathSum);
