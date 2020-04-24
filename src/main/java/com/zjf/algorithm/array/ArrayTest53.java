@@ -24,25 +24,25 @@ public class ArrayTest53 {
 		if (len == 1){
 			return nums[0];
 		}
-		//标记开始位置
-		int k;
-		//记录总数
-		int sum = nums[0];;
-		for (int i = 1; i < nums.length; i++) {
+		//记录当前值的总和
+		int currSum = nums[0];
+		//记录最大值
+		int maxSum = nums[0];
+		for (int i = 1; i < len; i++) {
 			int num = nums[i];
-			if (num >= sum + num){
-				sum = num;
-				k = i;
+			if (currSum > 0){
+				currSum += num;
 			}else {
-				sum += num;
+				currSum = num;
 			}
+			maxSum = Math.max(currSum,maxSum);
 		}
-
-		return sum;
+		return maxSum;
 	}
 
 	public static void main(String[] args) {
 		int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
+		int[] nums1 = {-2,-3,-4,-5,-1,-6,-2,-5,4};
 		ArrayTest53 arrayTest53 = new ArrayTest53();
 		int sum = arrayTest53.maxSubArray(nums);
 		System.out.println(sum);
