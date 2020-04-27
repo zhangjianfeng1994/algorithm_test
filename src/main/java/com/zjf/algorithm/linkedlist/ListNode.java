@@ -1,4 +1,4 @@
-package com.zjf.algorithm.array;
+package com.zjf.algorithm.linkedlist;
 
 /**
  * description: ListNode <br>
