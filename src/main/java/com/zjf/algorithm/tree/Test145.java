@@ -1,7 +1,9 @@
 package com.zjf.algorithm.tree;
 
 import java.util.*;
-
+/**
+ * 树的后续遍历
+ */
 public class Test145 {
 
 	/**
@@ -39,26 +41,21 @@ public class Test145 {
 	 * 3.然后将这个结果返回来，这里是利用栈的先进后出倒序打印。
 	 */
 	public List<Integer> postorderTraversal1(TreeNode root) {
-		List<Integer> list = new ArrayList<Integer>();
+		LinkedList<Integer> list = new LinkedList<Integer>();
 		if (root == null){
 			return  list;
 		}
 		Deque<TreeNode> stack1 = new LinkedList<TreeNode>();
-		Deque<TreeNode> stack2 = new LinkedList<TreeNode>();
 		stack1.push(root);
 		while (!stack1.isEmpty()){
 			TreeNode node = stack1.pop();
-			stack2.push(node);
+			list.addFirst(node.val);
 			if (node.left !=null){
 				stack1.push(node.left);
 			}
 			if (node.right !=null){
 				stack1.push(node.right);
 			}
-		}
-		while (!stack2.isEmpty()){
-			TreeNode node = stack2.pop();
-			list.add(node.val);
 		}
 		return list;
 	}
@@ -134,7 +131,57 @@ public class Test145 {
 		return list;
 	}
 
-
+	/**
+	 * 后续遍历迭代通用写法
+	 */
+	public List <Integer> postorderTraversa4(TreeNode root) {
+		LinkedList<Integer> res = new LinkedList<Integer>();
+		if (root == null){
+			return res;
+		}
+		Stack<TreeNode> stack = new Stack <TreeNode> ();
+		TreeNode curr = root;
+		while (curr != null || !stack.isEmpty()){
+			while (curr != null) {
+				res.addFirst(curr.val);
+				stack.push(curr);
+				curr = curr.right;
+			}
+			curr = stack.pop();
+			curr = curr.left;
+		}
+		return res;
+	}
+	/**
+	 * 后序遍历-莫里斯遍历-通用写法
+	 */
+	public List <Integer> postOrderMoLiSi(TreeNode root) {
+		LinkedList<Integer> res = new LinkedList<Integer>();
+		if (root == null){
+			return res;
+		}
+		TreeNode curr = root;
+		while (curr != null ){
+			if (curr.right == null) {
+				res.addFirst(curr.val);
+				curr = curr.left;
+			}else {
+				TreeNode pre = curr.right;
+				while(pre.left != null && pre.left != curr){
+					pre = pre.left;
+				}
+				if (pre.left == null){
+					pre.left = curr;
+					res.addFirst(curr.val);
+					curr = curr.right;
+				}else {
+					pre.left = null;
+					curr = curr.left;
+				}
+			}
+		}
+		return res;
+	}
 
 	public static void main(String[] args) {
 		/**

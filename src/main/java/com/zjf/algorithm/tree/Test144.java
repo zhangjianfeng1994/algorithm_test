@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * 树的前序遍历
+ */
 public class Test144 {
 	/**
 	 *树的前序遍历
@@ -25,7 +28,6 @@ public class Test144 {
 	}
 
 	//迭代
-
 	/**
 	 * 首先我们应该创建一个Stack用来存放节点，首先我们想要打印根节点的数据，
 	 * 此时Stack里面的内容为空，所以我们优先将头结点加入Stack，然后打印。
@@ -49,5 +51,57 @@ public class Test144 {
 			}
 		}
 		return list;
+	}
+
+	/**
+	 * 前序遍历迭代通用写法
+	 */
+	public List <Integer> preOrderIteration2(TreeNode root) {
+		List <Integer> res = new ArrayList <Integer> ();
+		if (root == null){
+			return res;
+		}
+		Stack<TreeNode> stack = new Stack <TreeNode> ();
+		TreeNode curr = root;
+		while (curr != null || !stack.isEmpty()){
+			while (curr != null) {
+				res.add(curr.val);
+				stack.push(curr);
+				curr = curr.left;
+			}
+			curr = stack.pop();
+			curr = curr.right;
+		}
+		return res;
+	}
+	/**
+	 * 前序遍历-莫里斯遍历-通用写法
+	 */
+	public List <Integer> preOrderMoLiSi(TreeNode root) {
+		List <Integer> res = new ArrayList <Integer> ();
+		if (root == null){
+			return res;
+		}
+		TreeNode curr = root;
+		while (curr != null ){
+			if (curr.left == null) {
+				res.add(curr.val);
+				curr = curr.right;
+			}else {
+				TreeNode pre = curr.left;
+				while(pre.right != null && pre.right != curr){
+					pre = pre.right;
+				}
+				if (pre.right == null){
+					pre.right = curr;
+					res.add(curr.val);
+					curr = curr.left;
+				}else {
+					pre.right = null;
+					curr = curr.right;
+				}
+			}
+		}
+		return res;
 	}
 }

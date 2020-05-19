@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * 树的中序遍历
+ */
 public class Test94 {
 
 	/**
@@ -29,8 +32,6 @@ public class Test94 {
 		inOrder(root,treeList);
 		return treeList;
 	}
-
-
 	public void inOrder(TreeNode root,List<Integer> treeList){
 		if (root != null){
 			inOrder(root.left,treeList);
@@ -41,15 +42,9 @@ public class Test94 {
 
 
 	/**
-	 * 基于栈的遍历
-	 * 1.创建一个Stack，然后按 左 中 右的顺序输出节点。
-	 * 2.尽可能的将这个节点的左子树压入Stack，此时栈顶的元素是最左侧的元素，
-	 *  其目的是找到一个最小单位的子树(也就是最左侧的一个节点)，并且在寻找的过程中记录了来源，
-	 *  才能返回上层,同时在返回上层的时候已经处理完毕左子树了。。
-	 * 3.当处理完最小单位的子树时，返回到上层处理了中间节点。
-	 *  （如果把整个左中右的遍历都理解成子树的话，就是处理完 左子树->中间(就是一个节点)->右子树）
-	 * 4.如果有右节点，其也要进行中序遍历。
-	 *
+	 * 迭代通用写法
+	 * @param root
+	 * @return
 	 */
 	public List < Integer > inorderTraversal1(TreeNode root) {
 		List <Integer> res = new ArrayList <Integer> ();
@@ -58,20 +53,49 @@ public class Test94 {
 		}
 		Stack<TreeNode> stack = new Stack <TreeNode> ();
 		TreeNode curr = root;
-		while (!stack.isEmpty() || curr != null) {
+		while (curr != null || !stack.isEmpty()){
 			while (curr != null) {
 				stack.push(curr);
 				curr = curr.left;
 			}
-			TreeNode node = stack.pop();
-			res.add(node.val);
-			if (node.right != null){
-				curr = node.right;
-			}
+			curr = stack.pop();
+			res.add(curr.val);
+			curr = curr.right;
 		}
 		return res;
 	}
 
+	/**
+	 * 莫里斯遍历 通用写法
+	 */
+	public List <Integer> inorderMoLiSi(TreeNode root) {
+		List <Integer> res = new ArrayList <Integer> ();
+		if (root == null){
+			return res;
+		}
+		TreeNode curr = root;
+		while (curr != null ){
+			if (curr.left == null) {
+				res.add(curr.val);
+				curr = curr.right;
+			}else {
+				TreeNode pre = curr.left;
+				while(pre.right != null && pre.right != curr){
+					pre = pre.right;
+				}
+				if (pre.right == null){
+					pre.right = curr;
+					curr = curr.left;
+				}else {
+					res.add(curr.val);
+					pre.right = null;
+					curr = curr.right;
+				}
+
+			}
+		}
+		return res;
+	}
 
 
 }
