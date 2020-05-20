@@ -26,7 +26,7 @@ public class Test103 {
 	 */
 	public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
 		List<List<Integer>> res = new ArrayList<List<Integer>>();
-		if (root == null){
+		if(root == null){
 			return  res;
 		}
 		return  res;
