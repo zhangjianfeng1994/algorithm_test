@@ -1,7 +1,7 @@
 package com.zjf.algorithm.tree;
 
-import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class Test100 {
 
@@ -26,17 +26,39 @@ public class Test100 {
 	 */
 	/**
 	 * 层序遍历
+	 * 执行用时 :0 ms, 在所有 Java 提交中击败了100.00%的用户
+	 * 内存消耗 :36.9 MB, 在所有 Java 提交中击败了5.55%的用户
 	 */
 	public boolean isSameTree(TreeNode p, TreeNode q) {
-		if (p == null && q == null){
-			return true;
-		}
-		if (p == null || q == null){
-			return false;
-		}
-		Deque<TreeNode> stackP = new LinkedList<TreeNode>();
-		Deque<TreeNode> stackQ = new LinkedList<TreeNode>();
 
+		Queue<TreeNode> queueP = new LinkedList<TreeNode>();
+		Queue<TreeNode> queueQ = new LinkedList<TreeNode>();
+		queueP.offer(p);
+		queueQ.offer(q);
+		while (!queueP.isEmpty() || !queueQ.isEmpty()){
+			int sizeP = queueP.size();
+			int sizeQ = queueQ.size();
+			if (sizeP != sizeQ){
+				return false;
+			}
+			for (int i = 0; i < sizeP; i++) {
+				TreeNode treeP = queueP.poll();
+				TreeNode treeQ = queueQ.poll();
+				if (treeP == null && treeQ == null){
+					continue;
+				}
+				if (treeP == null || treeQ == null){
+					return false;
+				}
+				if (treeP.val != treeQ.val){
+					return false;
+				}
+				queueP.offer(treeP.left);
+				queueP.offer(treeP.right);
+				queueQ.offer(treeQ.left);
+				queueQ.offer(treeQ.right);
+			}
+		}
 		return true;
 	}
 }
