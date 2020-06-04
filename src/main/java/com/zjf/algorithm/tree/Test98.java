@@ -1,6 +1,9 @@
 package com.zjf.algorithm.tree;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Test98 {
 
@@ -50,6 +53,27 @@ public class Test98 {
 		return isValidBST(root.right);
 	}
 
+	public boolean isValidBST1(TreeNode root) {
+		if (root == null) {
+			return true;
+		}
+		Deque<TreeNode> stack = new LinkedList<>();
+		TreeNode curr = root;
+		TreeNode pre = null;
+		while (curr != null || !stack.isEmpty()){
+			while (curr != null){
+				stack.push(curr);
+				curr = curr.left;
+			}
+			curr = stack.pop();
+			if (pre !=null && pre.val>=curr.val){
+				return false;
+			}
+			pre = curr;
+			curr = curr.right;
+		}
+		return true;
+	}
 
 
 
