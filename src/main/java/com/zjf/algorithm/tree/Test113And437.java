@@ -25,11 +25,11 @@ public class Test113And437 {
 	 * ]
 	 */
 	public List<List<Integer>> pathSum(TreeNode root, int sum) {
-		List<List<Integer>> listAll = new ArrayList<>();
+		List<List<Integer>> listAll = new ArrayList<List<Integer>>();
 		if (root == null){
 			return listAll;
 		}
-		List<Integer> list = new ArrayList<>();
+		List<Integer> list = new ArrayList<Integer>();
 		preTraversal(root,listAll,list,sum,0);
 		return listAll;
 	}
@@ -39,7 +39,7 @@ public class Test113And437 {
 		list.add(root.val);
 		if (root.left == null && root.right == null){
 			if (sum == finalSum){
-				listAll.add(new ArrayList<>(list));
+				listAll.add(new ArrayList<Integer>(list));
 			}
 			list.remove(list.size()-1);
 			return;

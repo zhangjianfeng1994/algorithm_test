@@ -57,7 +57,7 @@ public class Test98 {
 		if (root == null) {
 			return true;
 		}
-		Deque<TreeNode> stack = new LinkedList<>();
+		Deque<TreeNode> stack = new LinkedList<TreeNode>();
 		TreeNode curr = root;
 		TreeNode pre = null;
 		while (curr != null || !stack.isEmpty()){
