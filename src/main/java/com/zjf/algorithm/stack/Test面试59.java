@@ -42,7 +42,7 @@ public class Test面试59 {
 	}
 
 	public int[] maxSlidingWindow1(int[] nums, int k) {
-		Deque<Integer> max = new ArrayDeque<>();
+		Deque<Integer> max = new ArrayDeque<Integer>();
 		int n = nums.length;
 		if (n == 0) {
 			return nums;
