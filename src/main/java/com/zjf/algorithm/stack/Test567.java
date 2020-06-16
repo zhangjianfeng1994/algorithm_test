@@ -24,6 +24,7 @@ public class Test567 {
 		输入的字符串只包含小写字母
 		两个字符串的长度都在 [1, 10,000] 之间
 	 *
+	 *https://blog.csdn.net/assiduous_me/article/details/91358465
 	*/
 	private static Set<String> result = new HashSet<String>();
 
@@ -55,7 +56,7 @@ public class Test567 {
 
 	public static void main(String[] args) {
 		Test567 test = new Test567();
-		String str = "ab";
+		String str = "abcd";
 		char[] a = str.toCharArray();
 		test.permutation(a,0,a.length-1);
 		Set<String> result = test.result;
