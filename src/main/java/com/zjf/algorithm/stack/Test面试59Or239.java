@@ -1,9 +1,8 @@
 package com.zjf.algorithm.stack;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
-public class Test面试59 {
+public class Test面试59Or239 {
 
 	/**
 	 * 给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。
@@ -68,7 +67,7 @@ public class Test面试59 {
 	}
 
 	public static void main(String[] args) {
-		Test面试59 test = new Test面试59();
+		Test面试59Or239 test = new Test面试59Or239();
 		int[] nums = {1,3,-1,-3,5,3,6,7};
 		System.out.println(Arrays.toString(test.maxSlidingWindow(nums,3)));
 	}

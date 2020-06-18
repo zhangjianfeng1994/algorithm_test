@@ -100,7 +100,8 @@ public class Test567 {
 				}
 			}
 			for (int i = 0; i < s2.length() - s1.length(); i++) {
-				int r = s2.charAt(i + s1.length()) - 'a', l = s2.charAt(i) - 'a';
+				int r = s2.charAt(i + s1.length()) - 'a';
+				int	l = s2.charAt(i) - 'a';
 				if (count == 26) {
 					return true;
 				}
