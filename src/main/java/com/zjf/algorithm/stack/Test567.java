@@ -26,49 +26,7 @@ public class Test567 {
 	 *
 	 *https://blog.csdn.net/assiduous_me/article/details/91358465
 	*/
-	private static Set<String> result = new HashSet<String>();
 
-	public boolean checkInclusion(String s1, String s2) {
-		char[] a1 = s1.toCharArray();
-		char[] a2 = s2.toCharArray();
-		if(a1.length == 0 ||a2.length == 0 ){
-			return false;
-		}
-		int a1Length = a1.length;
-		permutation(a1,0,a1Length);
-		for (int i = 0; i < a2.length-a1Length+1; i++) {
-			StringBuffer str = new StringBuffer();
-			for (int j = i; j < i+a1Length; j++) {
-				char c = a2[j];
-				str.append(c);
-			}
-			if (result.contains(str.toString())){
-				return true;
-			}
-		}
-		return false;
-	}
-
-
-	private static void permutation(char[] a, int from, int to) {
-		if (a == null || from > to || from < 0) {
-			return;
-		}
-		if (from == to) {
-			result.add(String.valueOf(a));
-		}
-		for (int i = from; i <= to; i++) {
-			swap(a, i, from);
-			permutation(a, from + 1, to);
-			swap(a, i, from);
-		}
-	}
-
-	private static void swap(char[] a, int left, int right) {
-		char temp = a[left];
-		a[left] = a[right];
-		a[right] = temp;
-	}
 
 
 	/**
@@ -82,7 +40,8 @@ public class Test567 {
 	 *  s1= "abb" s2 = "eacaoaoo"
 	 *
 	 */
-	public class Solution1 {
+	public class Solution {
+
 		public boolean checkInclusion(String s1, String s2) {
 			if (s1.length() > s2.length()) {
 				return false;
@@ -126,13 +85,4 @@ public class Test567 {
 
 
 
-	public static void main(String[] args) {
-		Test567 test = new Test567();
-		String str = "abcd";
-		char[] a = str.toCharArray();
-		permutation(a,0,a.length-1);
-		for (String aa : result) {
-			System.out.println(aa);
-		}
-	}
 }
