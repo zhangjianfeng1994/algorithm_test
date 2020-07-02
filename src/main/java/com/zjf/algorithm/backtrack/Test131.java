@@ -18,4 +18,5 @@ public class Test131 {
 	public List<List<String>> partition(String s) {
 		return null;
 	}
+
 }
