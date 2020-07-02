@@ -65,6 +65,7 @@ public class Test78 {
 		return  res;
 	}
 
+
 	public static void main(String[] args) {
 		int[] nums = {1,2,3};
 		Test78 test = new Test78();
