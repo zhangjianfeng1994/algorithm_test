@@ -31,7 +31,7 @@ public class Test78 {
 			return null;
 		}
 		res = new ArrayList<>();
-		dfs(nums,0,new ArrayList<>());
+		dfs(nums,0,new ArrayList<Integer>());
 		return  res;
 	}
 
@@ -53,7 +53,7 @@ public class Test78 {
 			return null;
 		}
 		res = new ArrayList<>();
-		res.add(new ArrayList<>());
+		res.add(new ArrayList<Integer>());
 		for (int i = 0; i < nums.length; i++) {
 			for (int j = 0, size = res.size() ; j < size; j++) {
 				List<Integer> list = res.get(j);

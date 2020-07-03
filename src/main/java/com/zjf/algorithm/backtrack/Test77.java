@@ -28,7 +28,7 @@ public class Test77 {
 			return null;
 		}
 		res = new ArrayList<>();
-		dfs(n,k,1,new ArrayList<>());
+		dfs(n,k,1,new ArrayList<Integer>());
 		return res;
 	}
 

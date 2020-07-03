@@ -31,7 +31,7 @@ public class Test90_78 {
 		}
 		Arrays.sort(nums);
 		res = new ArrayList<>();
-		dfs(nums,0,new ArrayList<>());
+		dfs(nums,0,new ArrayList<Integer>());
 		return  res;
 	}
 
@@ -54,7 +54,7 @@ public class Test90_78 {
 
 	public List<List<Integer>> subsetsWithDup1(int[] nums) {
 		List<List<Integer>> ans = new ArrayList<>();
-		ans.add(new ArrayList<>());// 初始化空数组
+		ans.add(new ArrayList<Integer>());// 初始化空数组
 		Arrays.sort(nums);
 		int start = 1; //保存新解的开始位置
 		for (int i = 0; i < nums.length; i++) {
