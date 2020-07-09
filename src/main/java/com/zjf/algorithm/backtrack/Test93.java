@@ -23,7 +23,7 @@ public class Test93 {
 	*/
 	List<String> res = new ArrayList<>();
 	public List<String> restoreIpAddresses(String s) {
-		if (s == null || s.length()<4){
+		if (s == null || s.length()<4 || s.length() > 12){
 			return  res;
 		}
 		backtrack(s,0,0,new ArrayList<String>());
@@ -44,10 +44,8 @@ public class Test93 {
 			String str;
 			if (depth == 3){
 				i = s.length()-1;
-				str = s.substring(start,i+1);
-			}else {
-				str = s.substring(start, i + 1);
 			}
+			str = s.substring(start, i + 1);
 			if (isIpStr(str)){
 				list.add(str);
 				backtrack(s,i+1,depth+1,list);
