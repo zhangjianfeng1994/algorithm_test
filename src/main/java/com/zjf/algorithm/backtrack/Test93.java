@@ -30,24 +30,26 @@ public class Test93 {
 		return res;
 	}
 	public void backtrack(String s,int start,int depth,List<String> list){
-		if (s.length() == start){
-			return;
-		}
 		if (depth == 4){
-			String str = StringUtils.join(list, ".");
-			res.add(str);
+			StringBuffer stringBuffer = new StringBuffer();
+			for (int i = 0; i < list.size()-1; i++) {
+				stringBuffer.append(list.get(i));
+				stringBuffer.append(".");
+			}
+			stringBuffer.append(list.get(list.size()-1));
+			res.add(stringBuffer.toString());
 			return;
 		}
 		for (int i = start; i < s.length(); i++) {
 			String str;
 			if (depth == 3){
-				str = s.substring(start,s.length());
+				i = s.length()-1;
+				str = s.substring(start,i+1);
 			}else {
 				str = s.substring(start, i + 1);
 			}
-			int ipInt = Integer.parseInt(str);
-			if (0 <= ipInt && ipInt <=255){
-				list.add(String.valueOf(ipInt));
+			if (isIpStr(str)){
+				list.add(str);
 				backtrack(s,i+1,depth+1,list);
 				list.remove(list.size()-1);
 			}else{
@@ -56,10 +58,28 @@ public class Test93 {
 		}
 	}
 
+	public boolean isIpStr(String s){
+		if (s.length() > 1 && s.charAt(0) == '0'){
+			return false;
+		}
+		if (s.length() > 3){
+			return false;
+		}
+		if (s.length() == 3){
+			int int1 = Integer.parseInt(s);
+			if (int1> 255){
+				return false;
+			}
+		}
+		return true;
+	}
+
+
 	public static void main(String[] args) {
 		Test93 test = new Test93();
-		String s = "25525511135";
+		String s = "172162541";
 		List<String> ss = test.restoreIpAddresses(s);
 		System.out.println(ss.toString());
+		//System.out.println(test.isIpStr("216"));
 	}
 }
