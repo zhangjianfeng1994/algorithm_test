@@ -8,7 +8,7 @@ import java.util.Stack;
 /**
  * 树的前序遍历
  */
-public class Test144 {
+public class Test144_preTraversal {
 	/**
 	 *树的前序遍历
 	 *

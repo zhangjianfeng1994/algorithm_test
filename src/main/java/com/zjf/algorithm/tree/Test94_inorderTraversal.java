@@ -7,7 +7,7 @@ import java.util.Stack;
 /**
  * 树的中序遍历
  */
-public class Test94 {
+public class Test94_inorderTraversal {
 
 	/**
 	 * 给定一个二叉树，返回它的中序 遍历。

@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * 树的后续遍历
  */
-public class Test145 {
+public class Test145_postTraversal {
 
 	/**
 	 * 给定一个二叉树，返回它的 后序 遍历。
@@ -200,7 +200,7 @@ public class Test145 {
 		node1.right = node3;
 		node2.left = node4;
 		node3.right = node5;
-		Test145 test = new Test145();
+		Test145_postTraversal test = new Test145_postTraversal();
 		List<Integer> list = test.postorderTraversa2(node1);
 		System.out.println(Arrays.toString(list.toArray()));
 	}
