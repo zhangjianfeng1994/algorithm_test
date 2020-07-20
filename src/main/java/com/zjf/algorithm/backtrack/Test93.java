@@ -77,7 +77,8 @@ public class Test93 {
 		Test93 test = new Test93();
 		String s = "172162541";
 		List<String> ss = test.restoreIpAddresses(s);
-		System.out.println(ss.toString());
+		//System.out.println(ss.toString());
 		//System.out.println(test.isIpStr("216"));
 	}
+
 }
