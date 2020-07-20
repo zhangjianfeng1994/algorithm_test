@@ -65,4 +65,8 @@ public class HeapSort {
 		arr[parent] = temp;
 	}
 
+	public static void main(String[] args) {
+
+	}
+
 }

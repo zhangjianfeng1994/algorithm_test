@@ -40,6 +40,7 @@ public class QuickSort {
 		int i = left, j = right;
 		while(i != j) {
 			// 顺序很重要，先从右边开始往左找，直到找到比base值小的数
+			//为了保证定位到的序列中间的数总是会小于基准数
 			while(array[j] >= base && i < j) {
 				j--;
 			}
@@ -97,11 +98,13 @@ public class QuickSort {
 		sort1(array, left, i - 1);
 		sort1(array, j + 1, right);
 	}
-
+	/**
+	 * 最快的
+	 */
 	private static void sort4(int[] array, int left, int right) {
 		int l = left - 1;
 		int r = right + 1;
-		int pivot = array[(left + right) / 2];
+		int pivot = array[left];
 		while (l < r) {
 			l++;
 			r--;
