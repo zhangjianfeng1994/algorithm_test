@@ -30,7 +30,8 @@ public class ArrayTest53 {
 		int maxSum = nums[0];
 		for (int i = 1; i < len; i++) {
 			int num = nums[i];
-			if (currSum > 0){
+			//状态转移方程
+			if (currSum >= 0){
 				currSum += num;
 			}else {
 				currSum = num;
@@ -38,6 +39,17 @@ public class ArrayTest53 {
 			maxSum = Math.max(currSum,maxSum);
 		}
 		return maxSum;
+	}
+
+	public int maxSubArray1(int[] nums) {
+		int[] dp = new int[nums.length];
+		dp[0] = nums[0];
+		int max = nums[0];
+		for (int i = 1; i < nums.length; i++) {
+			dp[i] = Math.max(dp[i- 1] + nums[i], nums[i]);
+			max = Math.max(dp[i],max);
+		}
+		return max;
 	}
 
 	public static void main(String[] args) {
