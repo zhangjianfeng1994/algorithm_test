@@ -22,6 +22,26 @@ public class Test121 {
 	 * 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
 	 */
 	public int maxProfit(int[] prices) {
-		return 1;
+		if(prices == null || prices.length == 0 ||prices.length == 1){
+			return 0;
+		}
+		int[] dp = new int[prices.length];
+		for (int i = 0; i < prices.length-1; i++) {
+			for (int j = i+1; j < prices.length; j++) {
+				dp[i] = Math.max(dp[i],prices[j]-prices[i]);
+			}
+		}
+		int result = Integer.MIN_VALUE;
+		for (int i = 0; i < dp.length; i++) {
+			int i1 = dp[i];
+			result = Math.max(i1,result);
+		}
+		return result;
+	}
+
+	public static void main(String[] args) {
+		Test121 test = new Test121();
+		int[] prices = {7,1,5,3,7,4};
+		System.out.println(test.maxProfit(prices));
 	}
 }
