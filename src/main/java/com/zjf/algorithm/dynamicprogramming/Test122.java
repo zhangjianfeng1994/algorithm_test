@@ -31,22 +31,15 @@ public class Test122 {
 		if(prices == null || prices.length == 0 ||prices.length == 1){
 			return 0;
 		}
-		int[] dp = new int[prices.length];
-		for (int i = 0; i < prices.length-1; i++) {
-			dp[i] = prices[i+1]-prices[i];
-		}
 		//记录当前值的总和
-		int currSum = 0;
 		//记录最大值
+		int num = 0;
 		int maxSum = 0;
-		for (int i = 0; i < dp.length; i++) {
-			int num = dp[i];
-			if (num >= 0){
-				currSum += num;
-			}else {
-				continue;
+		for (int i = 1; i < prices.length; i++) {
+			num = prices[i]-prices[i-1];
+			if (num > 0){
+				maxSum += num;
 			}
-			maxSum = Math.max(currSum,maxSum);
 		}
 		return maxSum;
 	}
