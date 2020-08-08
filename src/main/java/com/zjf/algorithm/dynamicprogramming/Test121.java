@@ -77,21 +77,6 @@ public class Test121 {
 	}
 
 
-
-	int maxProfit_k_inf(int[] prices) {
-		int n = prices.length;
-		int dp_i_0 = 0, dp_i_1 = Integer.MIN_VALUE;
-		for (int i = 0; i < n; i++) {
-			int temp = dp_i_0;
-			//更新为当天的不买或者卖的最大值
-			dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
-			//更新为当天的不卖或者卖的最大值
-			dp_i_1 = Math.max(dp_i_1,temp - prices[i]);
-		}
-		return dp_i_0;
-	}
-
-
 	public static void main(String[] args) {
 		Test121 test = new Test121();
 		int[] prices = {7,1,5,3,6,4};
