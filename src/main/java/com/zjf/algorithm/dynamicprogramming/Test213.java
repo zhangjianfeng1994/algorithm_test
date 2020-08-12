@@ -50,10 +50,35 @@ public class Test213 {
 		return Math.max(cur,cur1);
 	}
 
+	public int rob1(int[] nums) {
+		int len = nums.length;
+		if (len == 0){
+			return 0;
+		}
+		int dp_i_0_0 = 0;
+		int dp_i_1_0 = Integer.MIN_VALUE;
+		int dp_i_0_1 = Integer.MIN_VALUE;
+		int dp_i_1_1 = nums[0];
+		for (int i = 1; i < len; i++) {
+			int temp = dp_i_0_0;
+			int temp1 = dp_i_0_1;
+
+			dp_i_0_0 = Math.max(dp_i_0_0,dp_i_1_0);
+			dp_i_1_0 = temp +nums[i];
+			if(i == len-1){
+				dp_i_0_1 = Math.max(dp_i_0_1,dp_i_1_1);
+				dp_i_1_1 = dp_i_0_1;
+			}else{
+				dp_i_0_1 = Math.max(dp_i_0_1,dp_i_1_1);
+				dp_i_1_1 = temp1 +nums[i];
+			}
+		}
+		return Math.max(Math.max(dp_i_0_0,dp_i_1_0),Math.max(dp_i_0_1,dp_i_1_1));
+	}
 	public static void main(String[] args) {
 		Test213 test = new Test213();
-		int[] nums = {1,2};
-		System.out.println(test.rob(nums));
+		int[] nums = {2,3,2};
+		System.out.println(test.rob1(nums));
 	}
 
 }
