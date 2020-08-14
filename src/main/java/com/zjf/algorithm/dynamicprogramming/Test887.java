@@ -1,5 +1,7 @@
 package com.zjf.algorithm.dynamicprogramming;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @Description :
  * @Author : ZJF
@@ -31,8 +33,43 @@ public class Test887 {
 	 * 输入：K = 3, N = 14
 	 * 输出：4
 	 *  1:7  碎了: 6层2个鸡蛋:3 ; 没碎: 8 9 10  11  12 13 14
+	 *   f(K,N) = max(f(K-1,X-1), f(k,N-X)) + 1
 	 */
 	public int superEggDrop(int K, int N) {
-		return  0;
+		if (K==1 || N <=2){
+			return N;
+		}
+		//k个鸡蛋n层楼的最小移动次数
+		int[][] dp = new int[K][N+1];
+		//初始化 N=2 N=1的初始值是0 1 2
+		for (int i = 1; i < K; i++) {
+			dp[i][0]  = 0;
+			dp[i][1]  = 1;
+			dp[i][2]  = 2;
+		}
+		//初始化 k=1的初始值是n
+		for (int i = 0; i < N+1; i++) {
+			dp[0][i] = i;
+		}
+		for (int i = 1; i < K; i++) {
+			for (int j = 3; j < N+1; j++) {
+				int a = Integer.MAX_VALUE;
+				for (int x = j; x >= 1; x--) {
+					int b = dp[i-1][x-1],c = dp[i][j-x];
+					int d = Math.max(b, c) + 1;
+					if (a>d){
+						a= d;
+						System.out.println(j+":第一次第几层:"+x);
+					}
+				}
+				dp[i][j] = a;
+			}
+		}
+		return  dp[K-1][N];
+	}
+
+	public static void main(String[] args) {
+		Test887 test = new Test887();
+		System.out.println(test.superEggDrop(2,13));
 	}
 }
