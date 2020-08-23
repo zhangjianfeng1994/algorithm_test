@@ -1,5 +1,7 @@
 package com.zjf.algorithm.dynamicprogramming;
 
+import com.google.common.collect.Lists;
+
 import java.util.*;
 
 /**
@@ -40,9 +42,13 @@ public class Test140 {
 		for (int i = 1; i < len+1; i++) {
 			List<String> temp = new ArrayList<>();
 			for (int j = i-1; j >=0; j--) {
-				if (dp.get(j).size() > 0 && check(s.substring(j,i))){
-					for (String l:dp.get(j)) {
-						temp.add(l + (l.equals("") ? "" : " ") + s.substring(j, i));
+				if (check(s.substring(j,i)) && dp.get(j).size() > 0){
+					if (j==0){
+						temp.add(s.substring(j, i));
+					}else{
+						for (String l:dp.get(j)) {
+							temp.add(l + (l.equals("") ? "" : " ") + s.substring(j, i));
+						}
 					}
 				}
 			}
@@ -79,7 +85,8 @@ public class Test140 {
 				if (j == 0) {
 					res.add(s.substring(j, s.length()));
 				} else {
-					//递归得到剩余字符串的所有组成可能，然后和当前字符串分别用空格连起来加到结果中
+					//递归得到剩余字符串的所有组成可能，
+					// 然后和当前字符串分别用空格连起来加到结果中
 					List<String> temp = wordBreakHelper(s.substring(0, j), set, map);
 					for (int k = 0; k < temp.size(); k++) {
 						String t = temp.get(k);
@@ -96,12 +103,8 @@ public class Test140 {
 
 	public static void main(String[] args) {
 		Test140 test= new Test140();
-		List<String> wordDict = new ArrayList<>();
-		wordDict.add("cat");
-		wordDict.add("cats");
-		wordDict.add("and");
-		wordDict.add("sand");
-		wordDict.add("dog");
-		System.out.println(test.wordBreak("catsanddog",wordDict));
+		List<String> wordDict = Lists.newArrayList("a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa");
+		//System.out.println(test.wordBreak("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",wordDict));
+		System.out.println(test.wordBreak1("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",wordDict));
 	}
 }
