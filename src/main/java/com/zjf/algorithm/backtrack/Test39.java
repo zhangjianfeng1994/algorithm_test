@@ -58,14 +58,15 @@ public class Test39 {
 		}
 	}
 
+
 	public static void main(String[] args) {
 		Test39 test = new Test39();
-		int[] candidates = {2,3,6,7};
-		int target = 7;
-		List<List<Integer>> resu = test.combinationSum(candidates,target);
-		for (int i = 0; i < resu.size(); i++) {
-			List<Integer> list1 = resu.get(i);
-			System.out.println(list1.toString());
-		}
+		int[] candidates = {30,50,100};
+		int target = 70;
+//		for (int i = 0; i < resu.size(); i++) {
+//			List<Integer> list1 = resu.get(i);
+//		}
+
+
 	}
 }
