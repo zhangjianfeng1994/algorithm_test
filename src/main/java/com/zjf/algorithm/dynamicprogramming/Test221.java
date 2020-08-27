@@ -70,6 +70,8 @@ public class Test221 {
 
 		return temp == num ? true : false;
 	}
+
+
 	public static void main(String[] args) {
 		char[][] matrix =
 				{{'1','0','1','0','0'},{'1','0','1','1','1'},{'1','1','1','1','1'},{'1','0','0','1','0'}};
