@@ -21,7 +21,7 @@ public class TestCouponOptimal {
 		return res1;
 	}
 
-	public  void backtrack1(int[] candidates, int target,
+	public  Boolean backtrack1(int[] candidates, int target,
 	                        List<Integer> list, int start, int sum, Boolean flag){
 		if (sum > target){
 			flag = true;
@@ -32,7 +32,7 @@ public class TestCouponOptimal {
 				list1.remove(list1.size()-1);
 				res1.addAll(list1);
 			}
-			return;
+			return false;
 		}
 		if (sum == target){
 			flag = true;
@@ -40,17 +40,22 @@ public class TestCouponOptimal {
 			res1.add(sum);
 			List<Integer> list1 = new ArrayList<>(list);
 			res1.addAll(list1);
-			return;
+			return true;
 		}
 		for (int i = start; i < candidates.length; i++) {
 			int candidate = candidates[i];
 			list.add(candidate);
-			backtrack1(candidates,target,list,i,sum+candidate,flag);
+			Boolean isCon = backtrack1(candidates,target,list,i,sum+candidate,flag);
+			if (isCon){
+				//已经找到最优解,整个方法栈全部返回
+				return true;
+			}
 			if (flag){
 				break;
 			}
 			list.remove(list.size()-1);
 		}
+		return false;
 	}
 
 	/**
@@ -59,8 +64,8 @@ public class TestCouponOptimal {
 
 	public static void main(String[] args) {
 		TestCouponOptimal test = new TestCouponOptimal();
-		int[] candidates = {30,50,100};
-		int target = 110;
+		int[] candidates = {30,50,100}; //
+		int target = 200;
 		System.out.println(test.couponOptimal(candidates,target));
 
 	}
