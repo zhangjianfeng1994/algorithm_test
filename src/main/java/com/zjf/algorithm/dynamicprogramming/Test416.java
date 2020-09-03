@@ -32,28 +32,38 @@ public class Test416 {
 		if (len == 1){
 			return false;
 		}
-		int num = 0;
+		int sum = 0;
 		for (int i = 0; i < nums.length; i++) {
-			num += nums[i];
+			sum += nums[i];
 		}
 		//如果总数除以2有余数,说明无法分割
-		if(!(num%2 == 0)){
+		if(sum%2 != 0){
 			return false;
 		}
-		//总数的一半
-		int num_2 = num/2;
-		//前i个数凑出总数的可能
-		Boolean[][] dp = new Boolean[len+1][num_2+1];
-		for (int i = 0; i < dp.length; i++) {
-			Boolean[] booleans = dp[i];
-			Arrays.fill(booleans,false);
-		}
+		//总数和的一半
+		int num_2 = sum/2;
+		//前i个数凑出j的可能
+		boolean[][] dp = new boolean[len+1][num_2+1];
 		for (int i = 0; i < len; i++) {
 			dp[i][0] = true; //总数为0不用凑直接为成功
 		}
+		//
 		//dp[0] = true;
 		for (int i =1; i <= len; i++) {
 			for (int j = 1; j <= num_2; j++) {
+				if (j-nums[i-1] < 0){
+					dp[i][j] = dp[i-1][j];
+				}else {
+					dp[i][j] = (dp[i-1][j] || dp[i-1][j-nums[i-1]]);
+				}
+	 		}
+		}
+		/*
+			0 0 0 1
+			0 1 0 1
+		 */
+		for (int i =1; i <= len; i++) {
+			for (int j = num_2; j >= 0; j--) {
 				if (j-nums[i-1] < 0){
 					dp[i][j] = dp[i-1][j];
 				}else {
@@ -85,27 +95,39 @@ public class Test416 {
 		}
 		//总数的一半
 		int num_2 = num/2;
-		//前i个数凑出总数的可能
-		Boolean[] dp = new Boolean[num_2+1];
-		Arrays.fill(dp,false);
+		//凑出总数的可能
+		boolean[] dp = new boolean[num_2+1];
 
 		dp[0] = true;
 		/*
 		 *为啥是j--?
+		 *  //一维数组隐含的状态i:([i-1][j])
+			//dp[i][j] = (dp[i-1][j] || dp[i-1][j-nums[i-1]]);
+			//dp[i][j-nums[i-1]]
+			* dp[j] = (dp[j] || dp[j-nums[i]]) 从小到大的时候会导致j-nums[i]的值被覆盖
+			* 变成dp[i][j-nums[i-1]],这样计算到后面的时候.硬币或者数被重复使用
+			* 所以应该从大到小
 		*/
 		for (int i =0; i < len; i++) {
 			for (int j = num_2; j >= 0; j--) {
 				if (j-nums[i] >= 0){
-					dp[j] = (dp[j] || dp[j-nums[i]]);
+					dp[j] = (dp[j] || dp[j-nums[i]]) ;
 				}
 			}
 		}
+		/*for (int i =0; i < len; i++) {
+			for (int j = 1; j <=num_2 ; j++) {
+				if (j-nums[i] >= 0){
+					dp[j] = (dp[j] || dp[j-nums[i]]);
+				}
+			}
+		}*/
 		return dp[num_2];
 	}
 
 	public static void main(String[] args) {
 	 	Test416 test = new Test416();
-		int[] nums = {1, 2, 5};
+		int[] nums = {1, 2, 5}; //4
 		System.out.println(test.canPartition(nums));
 		System.out.println(test.canPartition1(nums));
 	}
