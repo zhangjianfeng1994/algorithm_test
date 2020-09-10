@@ -18,7 +18,7 @@ public class Test354 {
 	 * （即可以把一个信封放到另一个信封里面）。
 	 * 说明:
 	 * 不允许旋转信封。
-	 *d
+	 *
 	 * 示例:
 	 * 输入: envelopes = [[5,4],[6,4],[6,7],[2,3]]
 	 * 输出: 3
@@ -32,6 +32,7 @@ public class Test354 {
 		// 按宽度升序排列，如果宽度一样，则按高度降序排列
 		Arrays.sort(envelopes, new Comparator<int[]>()
 		{
+			@Override
 			public int compare(int[] a, int[] b) {
 				return a[0] == b[0] ?
 						b[1] - a[1] : a[0] - b[0];
@@ -39,8 +40,9 @@ public class Test354 {
 		});
 		// 对高度数组寻找 LIS
 		int[] height = new int[n];
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < n; i++) {
 			height[i] = envelopes[i][1];
+		}
 
 		//前n个信封可以套接的个数
 		int[] dp = new int[n];
