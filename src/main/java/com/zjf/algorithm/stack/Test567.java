@@ -30,15 +30,16 @@ public class Test567 {
 
 
 	/**
-	 * 为此，我们维护一个 countcount 变量，该变量存储字符数（26个字母表中的数字），
-	 * 这些字符在 s1s1 中具有相同的出现频率，当前窗口在 s2s2
+	 * 为此，我们维护一个 count 变量，该变量存储字符数（26个字母表中的数字），
+	 * 这些字符在 s1 中具有相同的出现频率，当前窗口在 s2
 	 * 中。当我们滑动窗口时，如果扣除最后一个元素并添加新元素导致任何字符的新频率匹配，
-	 * 我们将 countcount 递增1.如果不是，我们保持 countcount
+	 * 我们将 count 递增1.如果不是，我们保持 count
 	 * 完整。但是，如果添加频率相同的字符（添加和删除之前）相同的字符，
-	 * 现在会导致频率不匹配，这会通过递减相同的 countcount 变量来考虑。如果在移动窗口后，countcount
+	 * 现在会导致频率不匹配，这会通过递减相同的 count 变量来考虑。
+	 * 如果在移动窗口后，count
 	 * 的计算结果为26，则表示所有字符的频率完全匹配。所以，我们立即返回一个True。
 	 *  s1= "abb" s2 = "eacaoaoo"
-	 *
+	 *  count是指26字符出现的频率相同 ；
 	 */
 	public class Solution {
 
@@ -69,7 +70,9 @@ public class Test567 {
 					count++;
 
 				} else if (s2map[r] == s1map[r] + 1) {
-					//进入此if:之前的s2map[r] == s1map[r],现在不等于了,所以要--
+					//进入此if:上一次for下的s2map[r] == s1map[r],
+					// 因为s2map[r]++，添加了相同的字符， s2map[r]-1 == s1map[r]
+					// 在此for下不等于了,之前for下count++了，在此for下要--
 					count--;
 				}
 				s2map[l]--;
