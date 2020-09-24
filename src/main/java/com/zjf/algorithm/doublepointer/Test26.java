@@ -37,19 +37,34 @@ public class Test26 {
 			return  0;
 		}
 		int pre = 0;
-		int curr = 0;
+		int curr = 1;
 		int len = nums.length;
-		while (curr<len-1){
-			curr ++;
+		while (curr<len){
 			if (nums[curr] > nums[pre] ){
 				pre++;
 				int temp = nums[pre];
 				nums[pre] = nums[curr];
 				nums[curr] = temp;
 			}
+			curr ++;
 		}
 		return pre+1;
+
 	}
+	public int removeDuplicates1(int[] nums) {
+		if (nums.length == 0) {
+			return 0;
+		}
+		int i = 0;
+		for (int j = 1; j < nums.length; j++) {
+			if (nums[j] != nums[i]) {
+				i++;
+				nums[i] = nums[j];
+			}
+		}
+		return i + 1;
+	}
+
 
 	public static void main(String[] args) {
 		Test26 test = new Test26();
