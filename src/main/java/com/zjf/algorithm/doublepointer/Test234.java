@@ -90,6 +90,7 @@ public class Test234 {
 	private ListNode endOfFirstHalf(ListNode head) {
 		ListNode fast = head;
 		ListNode slow = head;
+		//偶数,左中
 		while (fast.next != null && fast.next.next != null) {
 			fast = fast.next.next;
 			slow = slow.next;
