@@ -9,6 +9,9 @@ import java.util.*;
  */
 public class FindSumNumbers {
 
+	/**
+	 * 从整型数组中找到所有和为特定值的一对整数,输出它们的下标
+	 */
 	public static List<List<Integer>> twoSumV2(int[] nums, int target) {
 		Map<Integer, Integer> map = new HashMap<>();
 		List<List<Integer>> resultList = new ArrayList<>();
