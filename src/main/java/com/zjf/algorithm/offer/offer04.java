@@ -43,6 +43,8 @@ public class offer04 {
 		}
 		return false;
 	}
+
+
 	/**
 	 * 官方解答
 	 */
