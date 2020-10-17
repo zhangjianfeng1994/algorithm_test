@@ -1,16 +1,13 @@
 package com.zjf.algorithm.offer;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Description :
  * @Author : ZJF
  * @Date: 2020-10-13 21:35  //时间
  */
-public class offer03 {
+public class Offer03 {
 
 	/**
 	 * 找出数组中重复的数字。
@@ -43,5 +40,6 @@ public class offer03 {
 		}
 		return -1;
 	}
+
 
 }

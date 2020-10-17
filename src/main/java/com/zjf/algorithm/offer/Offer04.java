@@ -5,7 +5,7 @@ package com.zjf.algorithm.offer;
  * @Author : ZJF
  * @Date: 2020-10-13 22:56  //时间
  */
-public class offer04 {
+public class Offer04 {
 
 	/**
 	 * 在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，
@@ -26,20 +26,17 @@ public class offer04 {
 	 * 给定 target = 20，返回 false
 	 */
 	/**
-	 * 二分法
+	 * 暴力
 	 * @date 2020/10/14 23:35
 	 */
 	public boolean findNumberIn2DArray(int[][] matrix, int target) {
-		int i = matrix.length - 1, j = 0;
-		while(i >= 0 && j < matrix[0].length)
-		{
-			if(matrix[i][j] > target) {
-				i--;
-			} else if(matrix[i][j] < target) {
-				j++;
-			} else {
-				return true;
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				if (matrix[i][j] == target){
+					return true;
+				}
 			}
+
 		}
 		return false;
 	}
@@ -64,7 +61,7 @@ public class offer04 {
 	}
 
 	public static void main(String[] args) {
-		offer04 test = new offer04();
+		Offer04 test = new Offer04();
 		int[][] matrix = {
 				{1,   4,  7, 11, 15},
 				{2,   5,  8, 12, 19},
