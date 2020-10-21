@@ -22,6 +22,25 @@ public class Offer10_1 {
 	 * 输出：5
 	 */
 	public int fib(int n) {
-		return 1;
+		if(n == 0){
+			return 0;
+		}
+		if(n == 1){
+			return 1;
+		}
+		int pre1 = 0;
+		int pre2 = 1;
+		int sum = 0;
+		for (int i = 2; i <= n; i++) {
+			sum = (pre1 + pre2)%1000000007;
+			pre1 = pre2;
+			pre2 = sum;
+		}
+		return sum;
+	}
+
+	public static void main(String[] args) {
+		Offer10_1 test = new Offer10_1();
+		System.out.println(test.fib(100));
 	}
 }

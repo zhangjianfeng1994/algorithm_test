@@ -34,7 +34,7 @@ public class Offer07 {
 		}
 		inorderMap = new HashMap<>(inorder.length);
 		for (int i = 0; i < inorder.length; i++) {
-			inorderMap.put(preorder[i],i);
+			inorderMap.put(inorder[i],i);
 		}
 		return buildTree1(preorder,inorder,0,preorder.length-1,0,inorder.length);
 	}
@@ -58,5 +58,7 @@ public class Offer07 {
 				preR,inorderIndex+1,inR);
 		return rootNode;
 	}
+
+
 
 }
