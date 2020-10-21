@@ -1,5 +1,8 @@
 package com.zjf.algorithm.offer;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Description :
  * @Author : ZJF
@@ -26,7 +29,34 @@ public class Offer07 {
 	 * Test105
 	 */
 	public TreeNode buildTree(int[] preorder, int[] inorder) {
-
-		return null;
+		if(preorder.length == 0 || inorder.length == 0){
+			return null;
+		}
+		inorderMap = new HashMap<>(inorder.length);
+		for (int i = 0; i < inorder.length; i++) {
+			inorderMap.put(preorder[i],i);
+		}
+		return buildTree1(preorder,inorder,0,preorder.length-1,0,inorder.length);
 	}
+
+	Map<Integer,Integer> inorderMap ;
+	public TreeNode buildTree1(int[] preorder,int[] inorder,
+	                           int preL,int preR,int inL,int inR){
+		if (preL > preR){
+			return null;
+		}
+		int root = preorder[preL];
+		int inorderIndex = inorderMap.get(root);
+		TreeNode rootNode = new TreeNode(root);
+		//左树节点的数量
+		int left_tree_size =  inorderIndex - inL;
+		//左子树构建
+		rootNode.left = buildTree1(preorder,inorder,preL+1,
+				preL+left_tree_size,inL,inorderIndex-1);
+		//右子树构建
+		rootNode.right = buildTree1(preorder,inorder,preL+left_tree_size+1,
+				preR,inorderIndex+1,inR);
+		return rootNode;
+	}
+
 }
