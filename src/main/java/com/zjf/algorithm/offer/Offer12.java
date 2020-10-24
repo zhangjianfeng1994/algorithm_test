@@ -1,5 +1,8 @@
 package com.zjf.algorithm.offer;
 
+import org.checkerframework.checker.units.qual.A;
+import org.checkerframework.checker.units.qual.C;
+
 /**
  * description: Offer12 <br>
  * date: 2020/10/23 17:55 <br>
@@ -33,7 +36,53 @@ public class Offer12 {
 	 *
 	 */
 
+	int[][] next = {{0,1},{1,0},{0,-1},{-1,0}};
+	char[][] board;
+	int m,n;
+	char[] words;
+	boolean[][] mark; //标记已经走过位置,不能再次走该位置
 	public boolean exist(char[][] board, String word) {
+		this.m = board.length;
+		this.n = board[0].length;
+		this.board = board;
+		this.words = word.toCharArray();
+		mark = new boolean[m][n];
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if(dfs(0,i,j)){
+					return true;
+				}
+			}
+		}
 		return false;
+	}
+
+	private Boolean dfs(int pos, int m1, int n1) {
+		if (m1 < 0 || m1 >= m || n1 < 0 || n1 >= n || mark[m1][n1]){
+			return false;
+		}
+		if (board[m1][n1] != words[pos]){
+			return false;
+		}
+		if (pos == words.length-1){
+			return true;
+		}
+		mark[m1][n1] = true;
+		for (int[] ints:next) {
+			if(dfs(pos+1,m1+ints[0],n1+ints[1])){
+				return true;
+			}
+		}
+		mark[m1][n1] = false;
+		return false;
+	}
+
+	public static void main(String[] args) {
+		char[][] board = {
+				{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}
+		};
+		Offer12 test = new Offer12();
+		String word = "ABCCED";
+		System.out.println(test.exist(board,word));
 	}
 }
