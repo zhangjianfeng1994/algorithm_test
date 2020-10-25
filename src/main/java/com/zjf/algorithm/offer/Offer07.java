@@ -48,7 +48,7 @@ public class Offer07 {
 		int root = preorder[preL];
 		int inorderIndex = inorderMap.get(root);
 		TreeNode rootNode = new TreeNode(root);
-		//左树节点的数量
+		//根据中序遍历计算左树节点的数量
 		int left_tree_size =  inorderIndex - inL;
 		//左子树构建
 		rootNode.left = buildTree1(preorder,inorder,preL+1,
