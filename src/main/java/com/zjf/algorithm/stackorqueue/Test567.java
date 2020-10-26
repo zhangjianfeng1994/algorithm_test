@@ -1,7 +1,4 @@
-package com.zjf.algorithm.stack;
-
-import java.util.HashSet;
-import java.util.Set;
+package com.zjf.algorithm.stackorqueue;
 
 /**
  * description: 滑动窗口类

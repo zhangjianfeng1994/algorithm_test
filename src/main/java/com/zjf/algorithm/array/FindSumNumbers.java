@@ -24,7 +24,28 @@ public class FindSumNumbers {
 		}
 		return resultList;
 	}
-
+	/**
+	 * 时间复杂度: O（n²）  空间复杂度是O（n）
+	 */
+	public static List<List<Integer>> threeSum(int[] nums, int target) {
+		List<List<Integer>> resultList = new ArrayList<>();
+		for (int i = 0; i < nums.length; i++) {
+			Map<Integer, Integer> map = new HashMap<>();
+			int d1 = target - nums[i];
+			//寻找两数之和等于d1的组合
+			for (int j = i+1; j < nums.length; j++) {
+				int d2 = d1 - nums[j];
+				if (map.containsKey(d2)) {
+					resultList.add(Arrays.asList(nums[i], d2, nums[j]));
+				}
+				map.put(nums[j], j);
+			}
+		}
+		return resultList;
+	}
+	/**
+	 * 时间复杂度: O（n²）  空间复杂度是O（1）
+	 */
 	public static List<List<Integer>> threeSumv2(int[] nums, int target) {
 		Arrays.sort(nums);
 		List<List<Integer>> resultList = new ArrayList<List<Integer>>();

@@ -1,4 +1,4 @@
-package com.zjf.algorithm.stack;
+package com.zjf.algorithm.stackorqueue;
 
 import java.util.Deque;
 import java.util.LinkedList;

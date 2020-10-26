@@ -1,7 +1,5 @@
-package com.zjf.algorithm.stack;
+package com.zjf.algorithm.stackorqueue;
 
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.Stack;
 
 public class Test面试09 {
