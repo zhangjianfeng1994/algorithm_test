@@ -28,6 +28,24 @@ public class Offer16 {
 	 *
 	*/
 	public double myPow(double x, int n) {
-		return 2.1;
+		boolean flag = false;//是不是负数
+		if(n<0){
+			flag = true;
+			n = n* -1;
+		}
+		double res = x;
+		for (int i = 0; i < n-1; i++) {
+			res = res*x;
+		}
+	    if (flag){
+		    res = 1/res;
+	    }
+		return res;
+	}
+
+	public static void main(String[] args) {
+		Offer16 test = new Offer16();
+		System.out.println(test.myPow(2.10000,3));
+		System.out.println(test.myPow(2.0000,-2));
 	}
 }

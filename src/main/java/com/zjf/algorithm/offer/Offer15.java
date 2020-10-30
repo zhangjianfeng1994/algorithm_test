@@ -8,7 +8,8 @@ package com.zjf.algorithm.offer;
 public class Offer15 {
 
 	/**
-	 * 请实现一个函数，输入一个整数，输出该数二进制表示中 1 的个数。例如，把 9 表示成二进制是 1001，有 2 位是 1。因此，如果输入 9，则该函数输出 2。
+	 * 请实现一个函数，输入一个整数，输出该数二进制表示中 1 的个数。例如，
+	 * 把 9 表示成二进制是 1001，有 2 位是 1。因此，如果输入 9，则该函数输出 2。
 	 *
 	 * 示例 1：
 	 *
@@ -29,6 +30,37 @@ public class Offer15 {
 	*/
 	// you need to treat n as an unsigned value
 	public int hammingWeight(int n) {
-		return 1;
+		int sum = 0;
+		while (n!=0){
+			sum += (n&1);
+			n = n>>>1;
+		}
+		return sum;
+	}
+
+	public static void main(String[] args) {
+		//源码 ,补码
+		System.out.println(Integer.toBinaryString(3)); //11
+		//负数是已补码的形式存在的
+		System.out.println(Integer.toBinaryString(-3)); //11111111111111111111111111111101
+
+		//算术左移和算术右移主要用来进行符号位的倍增,减半
+		//算术左移
+		System.out.println(3<<1); //6
+		System.out.println(Integer.toBinaryString(3<<1)); // 110
+		System.out.println(-3<<1); // -6
+		System.out.println(Integer.toBinaryString(-3<<1));//11111111111111111111111111111010
+		//算术右移 >>
+		System.out.println(3>>1); //1
+		System.out.println(Integer.toBinaryString(3>>1)); // 1
+		System.out.println(-3>>1); // -2
+		System.out.println(Integer.toBinaryString(-3>>1)); //11111111111111111111111111111110
+
+		//逻辑左移和右移主要进行无符号位的倍增,减半
+		//逻辑右移
+		System.out.println(3>>>1); //1
+		System.out.println(Integer.toBinaryString(3>>>1)); //1
+		System.out.println(-3>>>1); //2147483646
+		System.out.println(Integer.toBinaryString(-3>>>1)); //01111111111111111111111111111110
 	}
 }
