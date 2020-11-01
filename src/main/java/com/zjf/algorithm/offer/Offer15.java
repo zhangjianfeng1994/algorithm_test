@@ -1,5 +1,7 @@
 package com.zjf.algorithm.offer;
 
+import java.util.BitSet;
+
 /**
  * description: Offer15 <br>
  * date: 2020/10/28 16:51 <br>
@@ -30,6 +32,7 @@ public class Offer15 {
 	*/
 	// you need to treat n as an unsigned value
 	public int hammingWeight(int n) {
+
 		int sum = 0;
 		while (n!=0){
 			sum += (n&1);
@@ -38,10 +41,16 @@ public class Offer15 {
 		return sum;
 	}
 
+	/**
+	 * api bitset用法
+	 */
+	public int hammingWeight1(int n) {
+		return Long.bitCount(new Long(n));
+	}
 	public static void main(String[] args) {
 		//源码 ,补码
 		System.out.println(Integer.toBinaryString(3)); //11
-		//负数是已补码的形式存在的
+		//负数是已补码的形式存在的 取反加一
 		System.out.println(Integer.toBinaryString(-3)); //11111111111111111111111111111101
 
 		//算术左移和算术右移主要用来进行符号位的倍增,减半

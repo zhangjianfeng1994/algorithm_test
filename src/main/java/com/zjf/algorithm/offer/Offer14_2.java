@@ -75,9 +75,24 @@ public class Offer14_2 {
 		return (int) (res*n%1000000007);
 	}
 
+	/*\
+	 BigInteger
+	 */
+	public int cuttingRope2(int n) {
+		int[] dp = new int[n + 1];
+		for (int i = 2; i <= n; i++) {
+			for (int j = 1; j < i; j++) {
+				dp[i]= Math.max(dp[i], Math.max(j * (i - j), j * dp[i - j]));
+			}
+		}
+		return dp[n];
+	}
+
+
 	public static void main(String[] args) {
 		Offer14_2 test = new Offer14_2();
 		System.out.println(test.cuttingRope(120));
 		System.out.println(test.cuttingRope1(120));
+		System.out.println(Integer.MAX_VALUE);//2147483647
 	}
 }
