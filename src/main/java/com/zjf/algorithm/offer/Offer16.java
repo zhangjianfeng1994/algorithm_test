@@ -65,6 +65,51 @@ public class Offer16 {
 
 
 
+	/**
+	 * 至于求负幂次方，比如 2^{-10}，可以先求出 2^{10}，然后取倒数，1/2^{10}，就可以了
+	 * 问题出在 n = - n 上，因为最小负数 -2^{31}取相反数的话，按照计算机的规则，
+	 * 依旧是-2^{31}，所以这种情况需要单独讨论一下。
+	 *当然，这样做的话 -1 ，和 1 也需要单独讨论下，因为他们的任意次方都是 1 或者 -1 。
+	 */
+	public double myPow2(double x, int n) {
+		if (x == -1) {
+			if ((n & 1) != 0) {
+				return -1;
+			} else {
+				return 1;
+			}
+		}
+		if (x == 1.0f) {
+			return 1;
+		}
+
+		if (n == -2147483648) {
+			return 0;
+		}
+		double mul = 1;
+		if (n > 0) {
+			mul = powRecursion(x, n);
+		} else {
+			n = -n;
+			mul = powRecursion(x, n);
+			mul = 1 / mul;
+		}
+		return mul;
+	}
+
+	public double powRecursion(double x, int n) {
+		if (n == 0) {
+			return 1;
+		}
+		//偶数的情况
+		if ((n & 1) == 0) {
+			return powRecursion(x * x, n / 2);
+		} else { //奇数的情况
+			return powRecursion(x * x, n / 2) * x;
+		}
+	}
+
+
 	public static void main(String[] args) {
 		Offer16 test = new Offer16();
 		System.out.println(test.myPow(2.10000,3));
