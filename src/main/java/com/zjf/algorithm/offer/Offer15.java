@@ -43,6 +43,9 @@ public class Offer15 {
 
 	/**
 	 * api bitset用法
+	 *
+	 * bitCount方法返回二进制位为1的数量;
+	 * BigInteger,Long
 	 */
 	public int hammingWeight1(int n) {
 		return Long.bitCount(new Long(n));
@@ -71,5 +74,10 @@ public class Offer15 {
 		System.out.println(Integer.toBinaryString(3>>>1)); //1
 		System.out.println(-3>>>1); //2147483646
 		System.out.println(Integer.toBinaryString(-3>>>1)); //01111111111111111111111111111110
+
+
+
+
+
 	}
 }
