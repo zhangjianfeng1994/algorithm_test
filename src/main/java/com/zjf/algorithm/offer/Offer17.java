@@ -1,5 +1,9 @@
 package com.zjf.algorithm.offer;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * @Description :
  * @Author : ZJF
@@ -27,86 +31,75 @@ public class Offer17 {
 		return res;
 	}
 
-	/**
-	 *1.由于存在大数问题，结果不能放入int数组中，故这里采用剑指offer原题的直接打印输出的模式。
-	 * 2.increment函数，若发生进位则一直进行for循环，直到不产生进位则break。
-	 * 如果i为0（即到了最高位）还发生了进位，则设置isOverflow为true，并返回至主函数的while判断。
-	 *
-	 */
-	public void printNumbers1(int n) {
-		StringBuilder str = new StringBuilder();
-		// 将str初始化为n个'0'字符组成的字符串
-		for (int i = 0; i < n; i++) {
-			str.append('0');
+
+	public int[] printNumbers1(int n) {
+		//使用数组来存储大数
+		char[] numbers=new char[n];
+		Arrays.fill(numbers,'0');
+		ArrayList<Integer> res=new ArrayList<>();
+		//开始运算
+		while(!incrementNumber(numbers)){
+			saveNumber(numbers,res);
 		}
-		while(!increment(str)){
-			// 去掉左侧的0
-			int index = 0;
-			while (index < str.length() && str.charAt(index) == '0'){
-				index++;
-			}
-			System.out.println(str.toString().substring(index));
-		}
+		//jdk 1.8 stream流将列表转换成数组
+		int[] result = res.stream().mapToInt(Integer::valueOf).toArray();
+		return result;
 	}
 
-	public boolean increment(StringBuilder str) {
-		boolean isOverflow = false;
-		for (int i = str.length() - 1; i >= 0; i--) {
-			char s = (char)(str.charAt(i) + 1);
-			// 如果s大于'9'则发生进位
-			if (s > '9') {
-				str.replace(i, i + 1, "0");
-				if (i == 0) {
-					isOverflow = true;
-				}
+	//递增
+	public boolean incrementNumber(char[] numbers){
+		//结束标识
+		boolean isBreak=false;
+		//进位标识
+		int carryFlag=0;
+		int l=numbers.length;
+		for(int i=l-1;i>=0;i--){
+			//char型转换成int(同时将低位的进位增加)
+			int sumArr=numbers[i]-'0'+carryFlag;
+			//最低位加1
+			if(i==l-1){
+				sumArr++;
 			}
-			// 没发生进位则跳出for循环
-			else {
-				str.replace(i, i + 1, String.valueOf(s));
+			//判断是否进位
+			if(sumArr>=10){
+				//判断是否已经超过最大值
+				if(i==0){
+					//超出最大值,结束
+					isBreak=true;
+				}else{
+					//未超出最大值,进位,减10
+					numbers[i]=(char)(sumArr-10+'0');
+					carryFlag=1;
+				}
+			}else{
+				numbers[i]=(char)(sumArr+'0');
 				break;
 			}
 		}
-		return isOverflow;
+		return isBreak;
 	}
 
-
-
-	StringBuilder sb;
-	int idx = 0;
-	public boolean increment(int n){
-		boolean carry=false;
-		for(int i=0;i<sb.length();++i){
-			if(carry || i==0){
-				if(sb.charAt(i)=='9'){
-					sb.setCharAt(i,'0');
-					carry = true;
-				}else{
-					sb.setCharAt(i,(char) (sb.charAt(i)+1));
-					carry = false;
-				}
-			}else{
-				break; // no addition on last idx, no need to compute any more
+	//输出
+	public void saveNumber(char[] numbers,ArrayList<Integer> res){
+		boolean isBreak=true;
+		int temp=0;
+		for(int i=0;i<numbers.length;i++){
+			if(isBreak && numbers[i]!='0'){
+				isBreak=false;
+			}
+			if(!isBreak){
+				//如果是超大值，肯定输出不了
+				temp=temp*10+(int)(numbers[i]-'0');
+				System.out.println(numbers[i]);
 			}
 		}
-		if(carry){
-			sb.append("1");
-		}
-		return sb.length()<=n; // overflow!
+		res.add(temp);
 	}
 
-	public void save(int ans[]){
-		ans[idx] = Integer.parseInt(sb.reverse().toString());
-		sb.reverse();
-	}
+	public static void main(String[] args) {
+		Offer17 test = new Offer17();
+		//System.out.println(test.printNumbers1(3));
 
-	public int[] printNumbers2(int n) {
-		int[] ans = new int[(int) Math.pow(10,n) - 1];
-		sb = new StringBuilder("0");
-		while(increment(n)){
-			save(ans);
-			idx++;
-		}
-		return ans;
 	}
 
 }

@@ -30,6 +30,22 @@ public class Offer18 {
 	 * 若使用 C 或 C++ 语言，你不需要 free 或 delete 被删除的节点
 	 */
 	public ListNode deleteNode(ListNode head, int val) {
-		return new ListNode(1);
+		ListNode curr = head;
+		ListNode prev = null;
+		while (curr !=null){
+			int temp = curr.val;
+			if (temp == val){
+				if (prev!=null){
+					prev.next = curr.next;
+				}else {
+					head = head.next;
+				}
+				break;
+			}
+			prev = curr;
+			curr = curr.next;
+
+		}
+		return head;
 	}
 }
