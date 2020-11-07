@@ -47,6 +47,8 @@ public class Offer15 {
 	public int hammingWeight1(int n) {
 		return Long.bitCount(new Long(n));
 	}
+
+
 	public static void main(String[] args) {
 		//源码 ,补码
 		System.out.println(Integer.toBinaryString(3)); //11
