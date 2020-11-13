@@ -11,7 +11,9 @@ public class HeapSort {
 	 * 创建堆，
 	 * @param arr 待排序列
 	 */
+	//
 	private static void heapSort(int[] arr) {
+
 		//创建堆 从底自上构建一直到根节点,每次创建新的节点都要重新调整子节点的结构
 		for (int i = (arr.length - 1) / 2; i >= 0; i--) {
 			//从第一个非叶子结点从下至上，从右至左调整结构
