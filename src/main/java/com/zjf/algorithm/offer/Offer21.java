@@ -31,7 +31,7 @@ public class Offer21 {
 		int left = 0;
 		int right = nums.length-1;
 		while (left < right){
-			//奇数
+			//判断奇数 找偶数
 			while ((nums[left]&1) ==1 && left < right ){
 				left++;
 			}

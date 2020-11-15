@@ -42,10 +42,10 @@ public class Offer26 {
 		if ( B== null){
 			return true;
 		}
-
+		//b!=null
 		if(A != null){
 			if (A.val == B.val){
-				return preTraversal(A.left,B.left) &&preTraversal(A.right,B.right);
+				return preTraversal(A.left,B.left) && preTraversal(A.right,B.right);
 			}
 		}
 		return false;

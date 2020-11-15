@@ -18,4 +18,13 @@ public class Offer24 {
 		}
 		return pre;
 	}
+
+	public ListNode reverseList1(ListNode head,ListNode pre) {
+		if (head == null){
+			return pre;
+		}
+		ListNode node = reverseList1(head.next,head);
+		head.next = pre;
+		return node;
+	}
 }

@@ -33,6 +33,7 @@ public class Offer27 {
 	 * 限制：
 	 * 0 <= 节点个数 <= 1000
 	 */
+	//节点交换 (不同于值交换:考虑节点为空的情况)
 	public TreeNode mirrorTree(TreeNode root) {
 		if (root == null){
 			return null;
