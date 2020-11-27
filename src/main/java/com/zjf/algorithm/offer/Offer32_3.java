@@ -6,36 +6,45 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * description: Offer31_1 <br>
- * date: 2020/11/24 19:39 <br>
+ * description: Offer31_2 <br>
+ * date: 2020/11/27 15:52 <br>
  * author: 张建峰 <br>
  */
-public class Offer32_1 {
-
+public class Offer32_3 {
+	
 	/**
-	 * 从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。
+	 * 请实现一个函数按照之字形顺序打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。
 	 *
 	 *  
 	 *
 	 * 例如:
 	 * 给定二叉树: [3,9,20,null,null,15,7],
+	 *
 	 *     3
 	 *    / \
 	 *   9  20
 	 *     /  \
 	 *    15   7
-	 * 返回：
-	 * [3,9,20,15,7]
+	 * 返回其层次遍历结果：
+	 *
+	 * [
+	 *   [3],
+	 *   [20,9],
+	 *   [15,7]
+	 * ]
 	*/
-	public int[] levelOrder(TreeNode root) {
+	public List<List<Integer>> levelOrder(TreeNode root) {
 		if (root == null){
-			return new int[0];
+			return new ArrayList<>();
 		}
-		List<Integer> list = new ArrayList<>();
+		List<List<Integer>> result = new ArrayList<>();
 		Queue<TreeNode> queue = new LinkedList<>();
 		queue.offer(root);
+		int deep = 0;
 		while (!queue.isEmpty()){
 			int size = queue.size();
+			deep++;
+			List<Integer> list = new ArrayList<>(size);
 			for (int i = 0; i < size; i++) {
 				TreeNode node = queue.poll();
 				list.add(node.val);
@@ -46,11 +55,7 @@ public class Offer32_1 {
 					queue.offer(node.right);
 				}
 			}
+			result.add(list);
 		}
-		int[] resultArray = new int[list.size()];
-		for (int i = 0; i < list.size(); i++) {
-			resultArray[i] = list.get(i);
-		}
-		return resultArray;
 	}
 }
