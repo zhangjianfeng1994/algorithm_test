@@ -32,6 +32,12 @@ public class Offer32_3 {
 	 *   [20,9],
 	 *   [15,7]
 	 * ]
+	 *
+	 * [1,2,3,4,null,null,5]
+	 *          1
+	 *         2 3
+	 *        4   5
+	 *
 	*/
 	public List<List<Integer>> levelOrder(TreeNode root) {
 		if (root == null){
@@ -44,18 +50,25 @@ public class Offer32_3 {
 		while (!queue.isEmpty()){
 			int size = queue.size();
 			deep++;
-			List<Integer> list = new ArrayList<>(size);
+			LinkedList<Integer> list = new LinkedList<>();
 			for (int i = 0; i < size; i++) {
 				TreeNode node = queue.poll();
-				list.add(node.val);
+				//奇数
+				if((deep&1) == 1){
+					list.add(node.val);
+				}else {
+					list.addFirst(node.val);
+				}
 				if (node.left != null){
 					queue.offer(node.left);
 				}
 				if (node.right != null){
 					queue.offer(node.right);
 				}
+
 			}
 			result.add(list);
 		}
+		return result;
 	}
 }
