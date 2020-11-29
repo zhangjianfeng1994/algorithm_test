@@ -44,11 +44,11 @@ public class Offer34 {
 		if (root == null){
 			return  resultList;
 		}
-		inorder(root,sum,new ArrayList<>(),0);
+		pre(root,sum,new ArrayList<>(),0);
 		return resultList;
 	}
 
-	public void inorder(TreeNode root, int sum,List<Integer> list,int currSum){
+	public void pre(TreeNode root, int sum,List<Integer> list,int currSum){
 		if (root == null){
 			return;
 		}
@@ -58,10 +58,9 @@ public class Offer34 {
 			List<Integer> result = new ArrayList<>();
 			result.addAll(list);
 			resultList.add(result);
-			return;
 		}
-		inorder(root.left,sum,list,currSum);
-		inorder(root.right,sum,list,currSum);
+		pre(root.left,sum,list,currSum);
+		pre(root.right,sum,list,currSum);
 		list.remove(list.size()-1);
 		currSum-=root.val;
 	}

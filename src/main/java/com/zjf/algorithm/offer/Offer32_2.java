@@ -1,9 +1,6 @@
 package com.zjf.algorithm.offer;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * description: Offer31_2 <br>
