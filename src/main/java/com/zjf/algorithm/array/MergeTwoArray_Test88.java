@@ -1,5 +1,7 @@
 package com.zjf.algorithm.array;
 
+import java.util.Arrays;
+
 /**
  * @Description :
  * @Author : ZJF
@@ -8,7 +10,8 @@ package com.zjf.algorithm.array;
 public class MergeTwoArray_Test88 {
 
 	/**
-	 * 给你两个有序整数数组 nums1 和 nums2，请你将 nums2 合并到 nums1 中，使 nums1 成为一个有序数组。
+	 * 给你两个有序整数数组 nums1 和 nums2，请你将 nums2 合并到 nums1 中，
+	 * 使 nums1 成为一个有序数组。
 	 *
 	 *  
 	 *
@@ -44,6 +47,15 @@ public class MergeTwoArray_Test88 {
 		}
 		// 表示将nums2数组从下标0位置开始，拷贝到nums1数组中，从下标0位置开始，长度为len2+1
 		System.arraycopy(nums2, 0, nums1, 0, len2 + 1);
+	}
+
+	public static void main(String[] args) {
+		int[] nums1 = {1,2,3,0,0,0};
+		int[] nums2 = {2,5,6};
+		MergeTwoArray_Test88 test = new MergeTwoArray_Test88();
+
+		test.merge(nums1,3,nums2,3);
+		System.out.println(Arrays.toString(nums1));
 	}
 
 }
