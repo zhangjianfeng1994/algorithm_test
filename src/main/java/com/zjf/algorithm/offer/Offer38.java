@@ -1,5 +1,10 @@
 package com.zjf.algorithm.offer;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * @Description :
  * @Author : ZJF
@@ -28,7 +33,49 @@ public class Offer38 {
 	 * 1 <= s 的长度 <= 8
 	 *
 	 */
+	List<String> res;
 	public String[] permutation(String s) {
-
+		if (s == null){
+			return null;
+		}
+		if (s.equals("")){
+			return new String[]{""};
+		}
+		if (s.length()==1){
+			return new String[]{s};
+		}
+		res = new ArrayList<String>();
+		dfs(s.toCharArray(),0,s.length()-1);
+		return res.toArray(new String[]{});
 	}
+
+	private void dfs(char[] chars, int l, int r) {
+		if (l == r){
+			//保存结果
+			String resS = new String(chars);
+			res.add(resS);
+
+		}
+		Set<Character> set = new HashSet<>();//判断重复
+		for (int i = l; i <=r; i++) {
+			if (set.contains(chars[i])){
+				continue;
+			}
+			set.add(chars[i]);
+			swap(chars,i,l);
+			dfs(chars,l+1,r);
+			swap(chars,i,l);
+		}
+	}
+
+	private void swap(char[] chars, int l, int r) {
+		if (r == l){
+			return ;
+		}
+		char temp = chars[l];
+		chars[l] = chars[r];
+		chars[r] = temp;
+	}
+
+
 }

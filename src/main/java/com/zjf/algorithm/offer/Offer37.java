@@ -1,5 +1,10 @@
 package com.zjf.algorithm.offer;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * @Description :
  * @Author : ZJF
@@ -39,11 +44,51 @@ public class Offer37 {
 	}
 	// Encodes a tree to a single string.
 	public String serialize(TreeNode root) {
-		return "";
+		if(root == null) {
+			return "[]";
+		}
+		StringBuilder  str = new StringBuilder("[");
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.offer(root);
+		while (!queue.isEmpty()){
+			TreeNode curr = queue.poll();
+			if (curr == null){
+				str.append("null,");
+			}else {
+				str.append(curr.val+",");
+				queue.offer(curr.left);
+				queue.offer(curr.right);
+			}
+
+		}
+		str.deleteCharAt(str.length() - 1);
+		str.append("]");
+		return str.toString();
 	}
 
 	// Decodes your encoded data to tree.
 	public TreeNode deserialize(String data) {
-		return new TreeNode(1);
+		if (data.equals("[]")){
+			return null;
+		}
+		String[] nodeVal = data.substring(1,data.length()-1).split(",");
+		TreeNode root = new TreeNode(Integer.parseInt(nodeVal[0]));
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.offer(root);
+		int i = 1;
+		while (!queue.isEmpty()){
+			TreeNode curr = queue.poll();
+			if (!nodeVal[i].equals("null")){
+				curr.left = new TreeNode(Integer.parseInt(nodeVal[i]));
+				queue.offer(curr.left);
+			}
+			i++;
+			if (!nodeVal[i].equals("null")){
+				curr.right = new TreeNode(Integer.parseInt(nodeVal[i]));
+				queue.offer(curr.right);
+			}
+			i++;
+		}
+		return root;
 	}
 }
