@@ -62,7 +62,7 @@ public class Offer06 {
 		node1.next = node2;
 		node2.next = node3;
 		node3.next = node4;
-		System.out.println(Arrays.toString(test.reversePrint1(node1)));
+		System.out.println(Arrays.toString(test.reversePrint(node1)));
 	}
 
 }
