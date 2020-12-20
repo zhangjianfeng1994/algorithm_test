@@ -1,6 +1,8 @@
 package com.zjf.algorithm.offer;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 
 /**
@@ -18,9 +20,21 @@ public class Offer39 {
 	 * 输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]
 	 * 输出: 2
 	 */
+	//1:hashMap 2:
 	public int majorityElement(int[] nums) {
 		Arrays.sort(nums);
 		return nums[nums.length/2];
+	}
+	public int majorityElement1(int[] nums) {
+		Map<Integer, Integer> map = new HashMap<>();
+		int n = nums.length / 2;
+		for(int num : nums) {
+			map.put(num, map.getOrDefault(num, 0) + 1);
+			if(map.get(num) > n) {
+				return num;
+			}
+		}
+		return 0;
 	}
 
 

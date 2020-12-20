@@ -75,9 +75,10 @@ public class Offer37 {
 		TreeNode root = new TreeNode(Integer.parseInt(nodeVal[0]));
 		Queue<TreeNode> queue = new LinkedList<>();
 		queue.offer(root);
-		int i = 1;
+		int i = 1;//nodeVal的索引
 		while (!queue.isEmpty()){
 			TreeNode curr = queue.poll();
+			//构建左树
 			if (!nodeVal[i].equals("null")){
 				curr.left = new TreeNode(Integer.parseInt(nodeVal[i]));
 				queue.offer(curr.left);
