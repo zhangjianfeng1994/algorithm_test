@@ -19,6 +19,22 @@ public class Offer42 {
 	 * -100 <= arr[i] <= 100
 	 */
 	public int maxSubArray(int[] nums) {
-		return 1;
+		if (nums.length == 0){
+			return 0;
+		}
+		if (nums.length == 1){
+			return nums[0];
+		}
+		int currSum = nums[0];
+		int maxSum = nums[0];
+		for (int i = 1; i < nums.length; i++) {
+			if (currSum> 0 ){
+				currSum +=nums[i];
+			}else {
+				currSum = nums[i];
+			}
+			maxSum = Math.max(maxSum,currSum);
+		}
+		return maxSum;
 	}
 }

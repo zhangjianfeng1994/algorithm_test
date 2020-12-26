@@ -20,6 +20,7 @@ public class Offer43 {
 	 * 1 <= n < 2^31
 	 */
 	public int countDigitOne(int n) {
+
 		return 1;
 	}
 }
