@@ -35,6 +35,7 @@ public class Offer42 {
 			}
 			maxSum = Math.max(maxSum,currSum);
 		}
+		//dp(n) = max(dp(n-1)+n,n)
 		return maxSum;
 	}
 }
