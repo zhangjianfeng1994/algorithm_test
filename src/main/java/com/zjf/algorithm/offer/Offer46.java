@@ -20,6 +20,65 @@ public class Offer46 {
 	 * 0 <= num < 231
 	 */
 	public int translateNum(int num) {
-		return 1;
+		if (num == 0){
+			return  1;
+		}
+		String numStr = String.valueOf(num);
+		int[] dp = new int[numStr.length()+1];
+		dp[0] = 1; //代表""
+		dp[1] = 1; //代表第一位
+		for (int i = 2; i < dp.length; i++) {
+			String pre = numStr.substring(i - 2, i);
+			if (pre.compareTo("10")>=0 && pre.compareTo("25")<=0){
+				dp[i] = dp[i-2]+dp[i-1];
+			}else {
+				dp[i] = dp[i-1];
+			}
+
+		}
+		return dp[numStr.length()];
 	}
+
+	public int translateNum1(int num) {
+		String s = String.valueOf(num);
+		int a = 1, b = 1; //a:dp[n-1] b:dp[n-2]
+		for(int i = 2; i <= s.length(); i++) {
+			String tmp = s.substring(i - 2, i);
+			int c = tmp.compareTo("10") >= 0 && tmp.compareTo("25") <= 0 ? a + b : a;
+			b = a;
+			a = c;
+		}
+		return a;
+	}
+
+	/**
+	 * 递归
+	 */
+	public int translateNum2(int num) {
+		String s = String.valueOf(num);
+		return backtrack(s, 0);
+	}
+
+	public int backtrack(String s, int idx){
+		int n = s.length();
+		if(idx == n) {
+			return 1;
+		}
+		if(idx == n - 1 || s.substring(idx,idx+1).equals("0")
+				|| s.substring(idx, idx+2).compareTo("25") >0) {
+			return backtrack(s, idx + 1);
+		}
+
+		return backtrack(s, idx + 1) + backtrack(s, idx + 2);
+	}
+
+
+	public static void main(String[] args) {
+		Offer46 test = new Offer46();
+		System.out.println(test.translateNum2(12258));
+	}
+
+
+
+
 }
