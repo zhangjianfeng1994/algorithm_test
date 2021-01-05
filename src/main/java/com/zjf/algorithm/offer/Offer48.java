@@ -1,5 +1,8 @@
 package com.zjf.algorithm.offer;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * description: Offer48 <br>
  * date: 2021/1/4 16:40 <br>
@@ -27,6 +30,19 @@ public class Offer48 {
 	 * s.length <= 40000
 	*/
 	public int lengthOfLongestSubstring(String s) {
-		return 1;
+		if(s==null || s.length() == 0){
+			return 0;
+		}
+		//记录字符所在的位置下标
+		Map<Character,Integer> chars = new HashMap<>();
+		int count = 0 ,i = -1;
+		for (int j = 0; j < s.length(); j++) {
+			if (chars.containsKey(s.charAt(j))){
+				i = Math.max(i,chars.get(s.charAt(j)));
+			}
+			chars.put(s.charAt(j),j);
+			count = Math.max(count,j-i);
+		}
+		return count;
 	}
 }
