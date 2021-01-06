@@ -1,5 +1,8 @@
 package com.zjf.algorithm.offer;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * description: Offer50 <br>
  * date: 2021/1/4 17:09 <br>
@@ -21,6 +24,28 @@ public class Offer50 {
 	 *
 	*/
 	public char firstUniqChar(String s) {
-		return 'c';
+		Map<Character,Boolean> chars = new LinkedHashMap<>();
+		for (int i = 0; i < s.length(); i++) {
+			chars.put(s.charAt(i),!chars.containsKey(s.charAt(i)));
+		}
+		for (Map.Entry<Character,Boolean> entry:chars.entrySet()) {
+			if (entry.getValue()){
+				return entry.getKey();
+			}
+		}
+		return ' ' ;
+	}
+	public char firstUniqChar1(String s) {
+		int[] chars = new int[26];
+		int len = s.length();
+		for (int i = 0; i < len; i++) {
+			chars[s.charAt(i)-'a']++;
+		}
+		for (int i = 0; i < len; i++) {
+			if (chars[s.charAt(i)-'a'] ==1){
+				return s.charAt(i);
+			}
+		}
+		return ' ' ;
 	}
 }

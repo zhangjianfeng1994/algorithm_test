@@ -14,6 +14,7 @@ public class Offer51 {
 	 * 示例 1:
 	 * 输入: [7,5,6,4]
 	 * 输出: 5
+	 * 记录当前的下标,排序之后记录排序之后的下标
 	*/
 	public int reversePairs(int[] nums) {
 		return 1;
