@@ -46,6 +46,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * 此外，LinkedHashMap中本身就实现了一个方法removeEldestEntry
  * 用于判断是否需要移除最不常读取的数，方法默认是直接返回false，不会移除元素，
  * 所以需要重写该方法。即当缓存满后就移除最不常用的数。
+ * LinkedHashMap每次get的时候把访问的到的数据移动到最后一个位置,
+ * 在put的时候如果已经满了,删除第一个 afterNodeInsertion方法
  */
 public class LRULinkedHashMap<K, V> extends LinkedHashMap<K, V> {
 
