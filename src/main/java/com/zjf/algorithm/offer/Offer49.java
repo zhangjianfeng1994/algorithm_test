@@ -15,13 +15,14 @@ public class Offer49 {
 	 * 输入: n = 10
 	 * 输出: 12
 	 * 解释: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 是前 10 个丑数。
-	 * 说明:  
+	 * 说明:  1 1 2 3 5 f(n) = f(n-1)+f(n-2) 斐波那契
 	 * 1 是丑数。
 	 * n 不超过1690。
 	 *
 	*/
 	/**
 	 * 动态规划
+	 * 1 1:   2 3 5  i2 =1
 	*/
 	public int nthUglyNumber(int n) {
 		int[] nums = new int[n];
@@ -31,10 +32,16 @@ public class Offer49 {
 			ugly = Math.min(Math.min(nums[i2] * 2, nums[i3] * 3), nums[i5] * 5);
 			nums[i] = ugly;
 
-			if (ugly == nums[i2] * 2) ++i2;
-			if (ugly == nums[i3] * 3) ++i3;
-			if (ugly == nums[i5] * 5) ++i5;
+			if (ugly == nums[i2] * 2) {
+				++i2;
+			}
+			if (ugly == nums[i3] * 3) {
+				++i3;
+			}
+			if (ugly == nums[i5] * 5) {
+				++i5;
+			}
 		}
-		return 1;
+		return nums[n-1];
 	}
 }
