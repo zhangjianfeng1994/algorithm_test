@@ -44,4 +44,5 @@ public class Offer49 {
 		}
 		return nums[n-1];
 	}
+
 }
