@@ -40,7 +40,15 @@ public class Offer55_2 {
 		if (root == null){
 			return true;
 		}
-		return false;
+		return maxDepth(root.left)- maxDepth(root.right)<=1
+				&& isBalanced(root.left)  && isBalanced(root.right);
+	}
+
+	public int maxDepth(TreeNode root) {
+		if (root == null){
+			return 0;
+		}
+		return Math.max(maxDepth(root.left),maxDepth(root.right))+1;
 	}
 }
 

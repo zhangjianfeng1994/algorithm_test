@@ -50,6 +50,7 @@ public class Offer53_1 {
 	}
 	/**
 	 * 两次二分确定左边界和右边界
+	 * nums = [5,7,7,8,8,10]
 	 */
 	public int search1(int[] nums, int target) {
 		if(nums.length == 0) {
@@ -94,6 +95,26 @@ public class Offer53_1 {
 		int left = j;
 		return right-left-1;
 	}
+
+	/**
+	 * 优化
+	 */
+	public int search2(int[] nums, int target) {
+		return helper(nums, target) - helper(nums, target - 1);
+	}
+	int helper(int[] nums, int tar) {
+		int i = 0, j = nums.length - 1;
+		while(i <= j) {
+			int m = (i + j) / 2;
+			if(nums[m] <= tar) {
+				i = m + 1;
+			} else {
+				j = m - 1;
+			}
+		}
+		return i;
+	}
+
 	public static void main(String[] args) {
 		Offer53_1 test = new Offer53_1();
 		int[] nums = {5,7,7,8,8,10};

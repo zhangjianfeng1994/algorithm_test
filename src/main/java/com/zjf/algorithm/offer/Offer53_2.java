@@ -1,5 +1,7 @@
 package com.zjf.algorithm.offer;
 
+import java.util.HashMap;
+
 /**
  * @Description :
  * @Author : ZJF
@@ -13,11 +15,29 @@ public class Offer53_2 {
 	 * 输入: [0,1,3]
 	 * 输出: 2
 	 * 示例 2:
-	 * 输入: [0,1,2,3,4,5,6,7,9]
+	 * 输入: [0,1,2,3,4,5,6,8,9]  长度9   4  左边4  右边4 8
 	 * 输出: 8
-	 * 二分,目标值在左右两边长度少的一遍,继续二分
+	 * 二分,目标值在左右两边长度少的一边,继续二分
+	 * l-r =
+	 * 下标 = num  右边  7 9
 	 */
 	public int missingNumber(int[] nums) {
 		return 1;
+	}
+	public int missingNumber1(int[] nums) {
+		int i = 0, j = nums.length - 1;
+		while(i <= j) {
+			int m = (i + j) / 2;
+			if(nums[m] == m) {
+				i = m + 1;
+			} else {
+				j = m - 1;
+			}
+		}
+		return i;
+	}
+
+	public static void main(String[] args) {
+		System.out.println();
 	}
 }

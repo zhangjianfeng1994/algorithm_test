@@ -75,5 +75,24 @@ public class Offer52 {
 		return len;
 	}
 
+	/**
+	 *时间复杂度O(n+m),空间复杂度O(1)
+	 * 设l1的不同部分为长度n,l2长度为m,俩链表相同部分为t;
+	 * 则l1=n+t,l2=m+t;
+	 * 可知l1+m=l2+n; 相遇在t第一个节点
+	 * 总结：两指针遍历俩个链表，至少第二次会进行匹配。若长度相同，则第一次进行匹配。
+	 */
+	public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+		if (headA == null || headB == null) {
+			return null;
+		}
+		ListNode node1=headA;
+		ListNode node2=headB;
+		while (node1!=node2){
+			node1=(node1==null)?headB:node1.next;
+			node2=(node2==null)?headA:node2.next;
+		}
+		return node1;
+	}
 
 }
