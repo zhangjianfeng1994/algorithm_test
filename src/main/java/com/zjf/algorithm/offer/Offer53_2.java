@@ -24,6 +24,7 @@ public class Offer53_2 {
 	public int missingNumber(int[] nums) {
 		return 1;
 	}
+	//如果递增不缺少数字,n=nums[n],n为下标;根据n=nums[n]可得知,缺少的数字在右边,否则在左边
 	public int missingNumber1(int[] nums) {
 		int i = 0, j = nums.length - 1;
 		while(i <= j) {
@@ -38,6 +39,6 @@ public class Offer53_2 {
 	}
 
 	public static void main(String[] args) {
-		System.out.println();
+		System.out.println(Integer.valueOf("33",2));
 	}
 }
