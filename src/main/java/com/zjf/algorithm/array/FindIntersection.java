@@ -9,7 +9,9 @@ import java.util.List;
  * @Date: 2020-10-23 22:24  //时间
  */
 public class FindIntersection {
-
+	/**
+	 * 找出两个数组的交叉数据
+	 */
 	static int getIntersection(int[] array_1, int[] array_2, List<Integer> c) {
 		int[] long_ = null;
 		int[] short_ = null;
