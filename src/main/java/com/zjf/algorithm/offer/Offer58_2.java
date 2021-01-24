@@ -17,6 +17,18 @@ public class Offer58_2 {
 	 * 输出: "umghlrlose"
 	*/
 	public String reverseLeftWords(String s, int n) {
-		return "";
+		if(n == 0){
+			return s;
+		}
+		int len = s.length();
+		int k = n%len; //要左旋的字段长度
+		String left = s.substring(0,k);
+		String right = s.substring(k);
+		return right+left;
+	}
+
+	public static void main(String[] args) {
+		Offer58_2 test = new Offer58_2();
+		System.out.println(test.reverseLeftWords("lrloseumgh",6));
 	}
 }

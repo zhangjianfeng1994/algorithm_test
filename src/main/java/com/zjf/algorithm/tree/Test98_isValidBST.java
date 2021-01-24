@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
-public class Test98 {
+public class Test98_isValidBST {
 
 	/**
 	 * 给定一个二叉树，判断其是否是一个有效的二叉搜索树。

@@ -1,7 +1,9 @@
 package com.zjf.algorithm.offer;
 
+import java.sql.SQLOutput;
+
 /**
- * description: Offer56_1 <br>
+ * description: 出现偶次数找一次的数字用此方法
  * date: 2021/1/21 18:38 <br>
  * author: 张建峰 <br>
  */
@@ -26,7 +28,7 @@ public class Offer56_1 {
 	 *
 	 */
 	public int[] singleNumbers(int[] nums) {
-		//用于将所有的数异或起来
+		//用于将所有的数异或起来(1和6的异或)
 		int k = 0;
 
 		for(int num: nums) {
@@ -40,11 +42,12 @@ public class Offer56_1 {
 		while((k & mask) == 0) {
 			mask <<= 1;
 		}
-
+		//把数组分为两组,不同的数据分到不同的组
 		int a = 0;
 		int b = 0;
 
 		for(int num: nums) {
+			//不同的数据与mask与运算 要么为0 要么为1
 			if((num & mask) == 0) {
 				a ^= num;
 			} else {
@@ -53,5 +56,9 @@ public class Offer56_1 {
 		}
 
 		return new int[]{a, b};
+	}
+
+	public static void main(String[] args) {
+		System.out.println(4^4);
 	}
 }

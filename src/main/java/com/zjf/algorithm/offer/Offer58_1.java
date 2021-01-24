@@ -29,6 +29,39 @@ public class Offer58_1 {
 	 * 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
 	*/
 	public String reverseWords(String s) {
-		return "";
+		String[] strings = s.trim().split(" ");
+		StringBuilder res = new StringBuilder();
+		for (int i = strings.length-1; i >=0; i--) {
+			String ss = strings[i];
+			if(ss.equals("")){
+				continue;
+			}
+			res.append(ss).append(" ");
+		}
+		//""字符串会造成数组越界
+		return res.toString().trim();
+	}
+
+	public String reverseWords1(String s) {
+		s = s.trim(); // 删除首尾空格
+		int j = s.length() - 1, i = j;
+		StringBuilder res = new StringBuilder();
+		while(i >= 0) {
+			while(i >= 0 && s.charAt(i) != ' ') {
+				i--; // 搜索首个空格
+			}
+			res.append(s.substring(i + 1, j + 1) + " "); // 添加单词
+			while(i >= 0 && s.charAt(i) == ' ') {
+				i--; // 跳过单词间空格
+			}
+			j = i; // j 指向下个单词的尾字符
+		}
+		return res.toString().trim(); // 转化为字符串并返回
+	}
+
+
+	public static void main(String[] args) {
+		Offer58_1 test = new Offer58_1();
+		System.out.println(test.reverseWords("a good   example"));
 	}
 }
