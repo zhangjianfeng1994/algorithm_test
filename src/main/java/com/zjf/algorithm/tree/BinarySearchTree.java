@@ -21,6 +21,11 @@ package com.zjf.algorithm.tree;
  */
 public class BinarySearchTree {
 
+
+
+
+
+
 	/**
 	 * 根据中序遍历有序特性
 	 */
@@ -146,20 +151,61 @@ public class BinarySearchTree {
 	/* 限定以 root 为根的子树节点必须满足 max.val > root.val > min.val */
 	boolean isValidBST(TreeNode root, TreeNode min, TreeNode max) {
 		// base case
-		if (root == null) return true;
+		if (root == null) {
+			return true;
+		}
 		// 若 root.val 不符合 max 和 min 的限制，说明不是合法 BST
-		if (min != null && root.val <= min.val) return false;
-		if (max != null && root.val >= max.val) return false;
+		if (min != null && root.val <= min.val) {
+			return false;
+		}
+		if (max != null && root.val >= max.val) {
+			return false;
+		}
 		// 限定左子树的最大值是 root.val，右子树的最小值是 root.val
 		return isValidBST(root.left, min, root)
 				&& isValidBST(root.right, root, max);
 	}
 
+	/**
+	 * 给定一个二叉树，判断其是否是一个有效的二叉搜索树。
+	 *
+	 * 假设一个二叉搜索树具有如下特征：
+	 *
+	 * 节点的左子树只包含小于当前节点的数。
+	 * 节点的右子树只包含大于当前节点的数。
+	 * 所有左子树和右子树自身必须也是二叉搜索树。
+	 *
+	 * 中序遍历时，判断当前节点是否大于中序遍历的前一个节点，
+	 * 如果大于，说明满足 BST，继续遍历；否则直接返回 false。
+	 */
+	long pre = Long.MIN_VALUE;
+	public boolean isValidBST1(TreeNode root) {
+		if (root == null) {
+			return true;
+		}
+		// 访问左子树
+		if (!isValidBST1(root.left)) {
+			return false;
+		}
+		// 访问当前节点：如果当前节点小于等于中序遍历的前一个节点，说明不满足BST，返回 false；否则继续遍历。
+		if (root.val <= pre) {
+			return false;
+		}
+		pre = root.val;
+		// 访问右子树
+		return isValidBST1(root.right);
+	}
+
+
 	//在 BST 中搜索一个数
 	//如果是在二叉树中寻找元素，可以这样写代码：
 	boolean isInBST(TreeNode root, int target) {
-		if (root == null) return false;
-		if (root.val == target) return true;
+		if (root == null) {
+			return false;
+		}
+		if (root.val == target) {
+			return true;
+		}
 		// 当前节点没找到就递归地去左右子树寻找
 		return isInBST(root.left, target)
 				|| isInBST(root.right, target);
